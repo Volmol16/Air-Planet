@@ -50,6 +50,38 @@
                         <h1>Air-Planet</h1>
                         <p>Дешевые Авиабилеты
                         </p>
+                        <?php
+
+// Занесение параметров в массив
+$array = array (
+
+$amount = 1,
+$payment = 10000,
+$shop = 3691,
+$currency = 'RUB',
+$desc = 'Название товара',
+$secret = 'cc7e1e26689cbbbb6f0de8e9b562d6ba' //Ваш секретный ключ
+
+);
+
+// Соединение массива в строку и хеширование функцией md5
+$sign = md5 ( implode ( '|', $array ) );
+
+?>
+
+<form action='https://payok.io/pay' method= 'POST'>
+
+<input type='hidden' name= 'amount' value= "<?php echo $amount; ?>">
+<input type='hidden' name= 'payment' value= "<?php echo $payment; ?>">
+<input type='hidden' name= 'shop' value= "<?php echo $shop; ?>">
+<input type='hidden' name= 'currency' value= "<?php echo $currency; ?>">
+<input type='hidden' name= 'desc' value= "<?php echo $desc; ?>">
+<input type='hidden' name= 'email' value= 'test@payok.io' >
+<input type='hidden' name= 'method' value= 'card' >
+<input type='hidden' name= 'sign' value= "<?php echo $sign; ?>">
+<input type='submit' value='Купить'>
+
+</form> 
                     </div>
                 </div>
             </div>
